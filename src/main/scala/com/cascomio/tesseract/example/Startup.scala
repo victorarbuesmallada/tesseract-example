@@ -1,8 +1,9 @@
 package com.cascomio.tesseract.example
 
-import net.sourceforge.tess4j.Tesseract
-
 object Startup extends App {
-  val tesseract = new Tesseract
-  args.foreach(println)
+  val ocrProcessor = new OCRProcessor
+  val pdf2PngConverter = new DefaultPdf2PngConverter //TODO: DI
+  val config = ArgumentsParser.buildConfig(args)
+  pdf2PngConverter.convert(config)
+  ocrProcessor.process(config)
 }

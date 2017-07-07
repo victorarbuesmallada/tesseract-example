@@ -1,10 +1,11 @@
 name := "tesseract-example"
 
-version := "1.0"
+version := "1.0.0"
 
 scalaVersion := "2.12.1"
 val ScalaTestVersion = "3.0.1"
 val ScalaMockVersion = "3.5.0"
+val PdfBoxVersion = "2.0.6"
 val Tess4jVersion = "3.4.0"
 val ScoptVersion = "3.6.0"
 
@@ -16,6 +17,8 @@ libraryDependencies ++= {
   Seq(
     "net.sourceforge.tess4j" % "tess4j" % Tess4jVersion,
     "com.github.scopt" %% "scopt" % ScoptVersion,
+    "org.apache.pdfbox" % "pdfbox" % PdfBoxVersion,
+    "org.apache.pdfbox" % "pdfbox-tools" % PdfBoxVersion,
     "org.scalactic" %% "scalactic" % ScalaTestVersion % Test,
     "org.scalatest" %% "scalatest" % ScalaTestVersion % Test,
     "org.scalamock" %% "scalamock-scalatest-support" % ScalaMockVersion % Test
