@@ -10,7 +10,6 @@ class DefaultOCRProcessorTests extends WordSpecLike
     "be OCR'd to an acceptable text output" in {
       val processor = new DefaultOCRProcessor
       val filePath = getClass.getResource("/menu2.pdf").getPath
-      val parentFilePath = new File(filePath).getParent
       val config = new Config(filePath, filePath)
 
       val words = processor.process(config)
