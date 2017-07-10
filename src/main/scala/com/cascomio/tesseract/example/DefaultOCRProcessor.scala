@@ -5,7 +5,20 @@ import java.io.{BufferedWriter, File, FileFilter, FileWriter}
 import net.sourceforge.tess4j.{ITesseract, Tesseract}
 
 class DefaultOCRProcessor extends OCRProcessor {
-  private lazy val tesseract: ITesseract = new Tesseract
+  private lazy val tesseract: ITesseract = buildTesseract()
+
+  private def buildTesseract(): ITesseract = {
+    val tesseract = new Tesseract
+    val tessdataPrefix =System.getenv("TESSDATA_PREFIX")
+    val path = if(tessdataPrefix == null || tessdataPrefix.length == 0)
+                  "/usr/local/tesseract-ocr"
+               else
+                  tessdataPrefix
+    tesseract.setDatapath(path)
+    tesseract.setLanguage("eng")
+    tesseract
+  }
+
   override def process(config: Config): String = {
     val inputFile = new File(config.filePath)
     val parentFolder = new File(inputFile.getParent)
