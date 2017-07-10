@@ -22,7 +22,7 @@ object ArgumentsParser {
         .text("Image resolution")
         .maxOccurs(1)
 
-      opt[Int]('l',"language").foreach(d => config = config.copy(dpi = d))
+      opt[String]('l',"language").foreach(l => config = config.copy(language = l))
         .text("OCR language")
         .maxOccurs(1)
     }
