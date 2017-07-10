@@ -13,7 +13,7 @@ class DefaultPdf2PngConverter extends Pdf2PngConverter {
     (0 to document.getNumberOfPages() - 1).foreach(i =>
     {
       val bim = pdfRenderer.renderImageWithDPI(i, config.dpi, ImageType.RGB)
-      ImageIOUtil.writeImage(bim, config.fileOuput + "-" + (i+1) + ".png", config.dpi)
+      ImageIOUtil.writeImage(bim, config.filePath + "-" + (i+1) + ".png", config.dpi)
     })
     document.close();
   }

@@ -5,5 +5,5 @@ object Startup extends App {
   val pdf2PngConverter = new DefaultPdf2PngConverter //TODO: DI
   val config = ArgumentsParser.buildConfig(args)
   pdf2PngConverter.convert(config)
-  ocrProcessor.process(config)
+  val words = ocrProcessor.process(config)
 }

@@ -1,6 +1,6 @@
 package com.cascomio.tesseract.example
 
-import java.io.{BufferedWriter, File, FileFilter, FileWriter}
+import java.io._
 
 import net.sourceforge.tess4j.{ITesseract, Tesseract}
 
@@ -33,10 +33,12 @@ class DefaultOCRProcessor extends OCRProcessor {
       acc + " " + tesseract.doOCR(f)
     })
 
-    val writer = new FileWriter(config.fileOuput)
-    val buffer = new BufferedWriter(writer)
-    buffer.write(words)
-    buffer.close()
+    val writer = new FileOutputStream(config.fileOuput)
+    val printStream = new PrintStream(writer)
+    printStream.print(words)
+
+    imageFiles.foreach(_.delete)
+
     words
   }
 }
