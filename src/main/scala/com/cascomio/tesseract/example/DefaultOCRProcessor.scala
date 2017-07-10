@@ -11,15 +11,15 @@ class DefaultOCRProcessor extends OCRProcessor {
     val tesseract = new Tesseract
     val tessdataPrefix =System.getenv("TESSDATA_PREFIX")
     val path = if(tessdataPrefix == null || tessdataPrefix.length == 0)
-                  "/usr/local/tesseract-ocr"
+                  new File("src/main/resources").getAbsolutePath
                else
                   tessdataPrefix
     tesseract.setDatapath(path)
-    tesseract.setLanguage("eng")
     tesseract
   }
 
   override def process(config: Config): String = {
+    tesseract.setLanguage(config.language)
     val inputFile = new File(config.filePath)
     val parentFolder = new File(inputFile.getParent)
     val imageFiles = parentFolder.listFiles(new FileFilter {

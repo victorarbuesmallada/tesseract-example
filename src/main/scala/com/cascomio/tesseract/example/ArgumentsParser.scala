@@ -21,6 +21,10 @@ object ArgumentsParser {
       opt[Int]('d',"dpi").foreach(d => config = config.copy(dpi = d))
         .text("Image resolution")
         .maxOccurs(1)
+
+      opt[Int]('l',"language").foreach(d => config = config.copy(dpi = d))
+        .text("OCR language")
+        .maxOccurs(1)
     }
   }
   def buildConfig(args: Array[String]): Config = {

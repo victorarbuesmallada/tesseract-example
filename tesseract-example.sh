@@ -25,10 +25,14 @@ do
             DPI=$2
             shift
         ;;
+        -l | --language)
+            LANGUAGE=$2
+            shift
+        ;;
     esac
     shift
 done
 
 validate
 
-sbt "run -f=$FILE_PATH -o=$FILE_OUTPUT"
+sbt "run -f=$FILE_PATH -o=$FILE_OUTPUT -l=$LANGUAGE"
