@@ -9,8 +9,6 @@ val PdfBoxVersion = "2.0.6"
 val Tess4jVersion = "3.4.0"
 val ScoptVersion = "3.6.0"
 
-addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.11.2")
-
 resolvers ++= Seq("Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/",
   "Java.net Maven2 Repository" at "http://download.java.net/maven/2/",
   Resolver.bintrayRepo("hseeberger", "maven"))
