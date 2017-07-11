@@ -1,8 +1,12 @@
 package com.cascomio.tesseract.example
 
 object Startup extends App {
-  System.load("/usr/local/lib/libtesseract.so")
-  //System.loadLibrary("tesseract")
+  try {
+    System.load("/usr/local/lib/liblept.so.5")
+    System.loadLibrary("tesseract")
+  } catch {
+    case ex: Exception => System.out.println(ex.getMessage())
+  }
   val ocrProcessor = new DefaultOCRProcessor
   val pdf2PngConverter = new DefaultPdf2PngConverter //TODO: DI
   val config = ArgumentsParser.buildConfig(args)
