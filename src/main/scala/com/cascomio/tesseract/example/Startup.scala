@@ -5,11 +5,12 @@ object Startup extends App {
     System.load("/usr/local/lib/liblept.so.5")
     System.loadLibrary("tesseract")
   } catch {
-    case ex: Exception => System.out.println(ex.getMessage())
+    case _ => System.out.println("couldn't load library")
+  } finally {
+    val ocrProcessor = new DefaultOCRProcessor
+    val pdf2PngConverter = new DefaultPdf2PngConverter //TODO: DI
+    val config = ArgumentsParser.buildConfig(args)
+    pdf2PngConverter.convert(config)
+    val words = ocrProcessor.process(config)
   }
-  val ocrProcessor = new DefaultOCRProcessor
-  val pdf2PngConverter = new DefaultPdf2PngConverter //TODO: DI
-  val config = ArgumentsParser.buildConfig(args)
-  pdf2PngConverter.convert(config)
-  val words = ocrProcessor.process(config)
 }
